@@ -17,11 +17,15 @@ import { AlertService, AuthenticationService, UserService } from './_services/in
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyASSTfJoKWLUTe0lpzG6HEbqts44tWJMxs'
+        }),
         HttpModule,
         routing
     ],
