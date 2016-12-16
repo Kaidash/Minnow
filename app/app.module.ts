@@ -2,6 +2,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { MaterialModule } from '@angular/material';
+
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers/index';
@@ -17,6 +19,8 @@ import { AlertService, AuthenticationService, UserService } from './_services/in
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
+import { MapComponent } from './map/index';
+import { NavComponent } from './navigation/index';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
 @NgModule({
@@ -27,6 +31,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
             apiKey: 'AIzaSyASSTfJoKWLUTe0lpzG6HEbqts44tWJMxs'
         }),
         HttpModule,
+        MaterialModule.forRoot(),
         routing
     ],
     declarations: [
@@ -34,7 +39,9 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
         AlertComponent,
         HomeComponent,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        MapComponent,
+        NavComponent
     ],
     providers: [
         AuthGuard,

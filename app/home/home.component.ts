@@ -1,9 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
-
-import { MapComponent } from '../map/map.component';
 import { User } from '../_models/index';
 import { UserService } from '../_services/index';
-
 
 @Component({
     moduleId: module.id,

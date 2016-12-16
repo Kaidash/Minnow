@@ -6,11 +6,36 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'map-component',
-    templateUrl: 'map.component.html'
+    template: `  
+        <sebm-google-map [latitude]="lat" [styles]="stylesMap" [longitude]="lng">
+            <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
+        </sebm-google-map>
+    `
 })
 
 export class MapComponent {
-    title: string = 'My first angular2-google-maps project';
     lat: number = 51.678418;
     lng: number = 7.809007;
+
+    stylesMap: any[] =[
+        {
+            stylers: [
+                { hue: "#00ffe6" },
+                { saturation: -20 }
+            ]
+        },{
+            featureType: "road",
+            elementType: "geometry",
+            stylers: [
+                { lightness: 100 },
+                { visibility: "simplified" }
+            ]
+        },{
+            featureType: "road",
+            elementType: "labels",
+            stylers: [
+                { visibility: "off" }
+            ]
+        }
+    ]
 }

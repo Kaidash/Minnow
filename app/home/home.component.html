@@ -1,10 +1,9 @@
-﻿<div class="col-md-6 col-md-offset-3">
+﻿<nav-component></nav-component>
+<div class="col-md-6 col-md-offset-3 wrapper">
     <h1>Hi {{currentUser.firstName}}!</h1>
     <p>You're logged in with Angular 2!!</p>
     <h3>All registered users:</h3>
-    <sebm-google-map [latitude]="lat" [longitude]="lng">
-        <sebm-google-map-marker [latitude]="lat" [longitude]="lng"></sebm-google-map-marker>
-    </sebm-google-map>
+    <map-component></map-component>
     <ul>
         <li *ngFor="let user of users">
             {{user.username}} ({{user.firstName}} {{user.lastName}})
