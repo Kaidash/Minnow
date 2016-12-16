@@ -10,7 +10,7 @@ import { UserService } from '../_services/index';
     selector: 'nav-component',
     templateUrl: 'navigation.component.html'
 })
-export class NavComponent implements OnInit {
+export class NavComponent  {
     currentUser: User;
     users: User[] = [];
 

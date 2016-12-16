@@ -38,4 +38,20 @@ export class MapComponent {
             ]
         }
     ]
+    ngOnInit() {
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition((position:any)=>{
+                    this.lat = position.coords.latitude;
+                    this.lng = position.coords.longitude
+            }
+        , null);
+        }
+        else
+        {
+            alert('It seems like Geolocation, which is required for this page, is not enabled in your browser.');
+        }
+
+    }
+
 }

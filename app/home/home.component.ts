@@ -10,8 +10,7 @@ import { UserService } from '../_services/index';
 export class HomeComponent implements OnInit {
     currentUser: User;
     users: User[] = [];
-    lat: number = 51.678418;
-    lng: number = 7.809007;
+
 
     constructor(private userService: UserService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -19,6 +18,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         this.loadAllUsers();
+    
     }
 
     deleteUser(id: number) {
