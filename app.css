@@ -11,13 +11,32 @@ a {
     cursor: pointer;
 }
 
+.head-login{
+    height: 20%;
+    background-color:#05f0ed;
+}
+.login-wrapper{
+    height: 80%;
+    background-color: #333333;
+}
+.login-container{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 25vw;
+    margin-left: -12.5vw;
+    margin-top: -12.5vh;
+}
+.login-container label{
+    color: #fff;
+}
+
 .help-block {
     font-size: 12px;
 }
 .sebm-google-map-container {
     height: 300px;
 }
-
 
 .loader {
     font-size: 10px;
@@ -88,3 +107,4 @@ a {
         transform: rotate(360deg);
     }
 }
+

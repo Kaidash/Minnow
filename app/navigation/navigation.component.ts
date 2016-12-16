@@ -2,24 +2,19 @@
  * Created by nikita on 16.12.16.
  */
 import { Component, OnInit } from '@angular/core';
-
+import { User } from '../_models/index';
+import { UserService } from '../_services/index';
 
 @Component({
+    moduleId: module.id,
     selector: 'nav-component',
-    template: `  
-        <button md-icon-button [md-menu-trigger-for]="menu">
-           <md-icon>more_vert</md-icon>
-        </button>
-        
-        <md-menu #menu="mdMenu">
-            <button md-menu-item> Refresh </button>
-            <button md-menu-item> Settings </button>
-            <button md-menu-item> Help </button>
-            <button md-menu-item disabled> Sign Out </button>
-        </md-menu>
-    `
+    templateUrl: 'navigation.component.html'
 })
+export class NavComponent implements OnInit {
+    currentUser: User;
+    users: User[] = [];
 
-export class NavComponent {
-    title: string="asd"
+    constructor(private userService: UserService) {
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
 }

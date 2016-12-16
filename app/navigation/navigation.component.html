@@ -1,0 +1,11 @@
+<button md-icon-button [md-menu-trigger-for]="menu">
+    <md-icon>more_vert</md-icon>
+</button>
+
+<md-menu #menu="mdMenu">
+    <a md-menu-item><b>{{currentUser.firstName}}!</b></a>
+    <a md-menu-item> Refresh </a>
+    <a md-menu-item> Settings </a>
+    <a md-menu-item> Help </a>
+    <a [routerLink]="['/login']" md-menu-item disabled > Sign Out </a>
+</md-menu>
