@@ -35,9 +35,20 @@ a {
     font-size: 12px;
 }
 .sebm-google-map-container {
-    height: 300px;
+    height: 60vh;
+    width: 70vw;
 }
-
+.wrapper{
+    width: 70vw;
+    margin: 10vh auto;
+}
+.md-overlay-container{
+    position: fixed;
+    top:40px;
+}
+[md-menu-item]{
+    width: 12vw;
+}
 .loader {
     font-size: 10px;
     text-indent: -9999em;
