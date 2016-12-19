@@ -8,19 +8,23 @@ import { Component, OnInit } from '@angular/core';
     selector: 'map-component',
     template: `  
         <sebm-google-map [latitude]="lat" [styles]="stylesMap" [longitude]="lng">
-            <sebm-google-map-marker *ngFor="let place of places" (markerClick)="clickedMarker()" [latitude]="place.lat" [longitude]="place.lng">
-                <sebm-google-map-info-window>
-                    <p><b>Название</b> : {{place.name}}</p>
-                </sebm-google-map-info-window>
+            <sebm-google-map-marker *ngFor="let place of places" (markerClick)="clickedMarker(place)" [latitude]="place.lat" [longitude]="place.lng">
+                <!--<sebm-google-map-info-window>-->
+                    <!--<p><b>Название</b> : {{place.name}}</p>-->
+                <!--</sebm-google-map-info-window>-->
             </sebm-google-map-marker>
         </sebm-google-map>
+        <h1 [style.display]="styleInfo"><b>Название водоема :</b> {{placeName}}</h1>
+        <p *ngFor = "let comment of commentsCollection ">{{comment}}</p>
     `
 })
 
 export class MapComponent {
     lat: number = 51.678418;
     lng: number = 7.809007;
-
+    placeName: string = '';
+    styleInfo:string = 'none';
+    commentsCollection:any[]=[];
     stylesMap: any[] =[
         {
             stylers: [
@@ -48,7 +52,7 @@ export class MapComponent {
             name: 'Krasnyy Oslik',
             lat: 49,
             lng:36,
-            comments:[],
+            comments:['Hello','Hello!!'],
             status:true,
             userName:'Nikita',
             img:'http://localhost:3000/'
@@ -57,7 +61,7 @@ export class MapComponent {
             name: 'Krasnyy Oslik2',
             lat: 50,
             lng:36,
-            comments:[],
+            comments:['Hihihi','Trololo'],
             status:true,
             userName:'Oleg',
             img:'http://localhost:3000/'
@@ -66,7 +70,7 @@ export class MapComponent {
             name: 'Krasnyy Oslik3',
             lat: 49.96,
             lng:36,
-            comments:[],
+            comments:['lslsls','ssss'],
             status:true,
             userName:'Stas',
             img:'http://localhost:3000/'
@@ -83,8 +87,11 @@ export class MapComponent {
         , null);
         }
     }
-    clickedMarker(){
-        console.log("123")
+    clickedMarker(place){
+        console.log(place);
+        this.styleInfo = 'block';
+        this.placeName = place.name;
+        this.commentsCollection=place.comments;
     }
 
 }
