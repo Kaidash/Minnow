@@ -2,6 +2,8 @@
  * Created by nikita on 15.12.16.
  */
 import { Component, OnInit } from '@angular/core';
+import { User } from '../_models/index';
+import { UserService } from '../_services/index';
 
 
 @Component({
@@ -14,17 +16,34 @@ import { Component, OnInit } from '@angular/core';
                 <!--</sebm-google-map-info-window>-->
             </sebm-google-map-marker>
         </sebm-google-map>
-        <h1 [style.display]="styleInfo"><b>Название водоема :</b> {{placeName}}</h1>
-        <p *ngFor = "let comment of commentsCollection ">{{comment}}</p>
-    `
+        <div class="comment-wrapper" [style.display]="styleInfo">
+            <h1 ><b>Название водоема :</b> {{placeName}}</h1>
+            <div class="comment-box" *ngFor="let comment of commentsCollection">
+                <span class="comment-author">{{comment.userName}}</span>
+                <img class="user-avatar" src="/src/img/user1.png" alt="user">
+                <p>{{comment.text}}</p>
+            </div>
+            <div class="styled-input wide">
+              <textarea id="comnt" [(ngModel)]="comnt" required></textarea>
+              <label>Message</label>
+              <span></span>
+            </div>   
+            <button type="submit" md-raised-button (click)="clicked()">Отпарвить</button>
+        </div>
+`
 })
 
 export class MapComponent {
+    currentUser: User;
+    users: User[] = [];
+
     lat: number = 51.678418;
     lng: number = 7.809007;
+
     placeName: string = '';
     styleInfo:string = 'none';
     commentsCollection:any[]=[];
+    comnt:string;
     stylesMap: any[] =[
         {
             stylers: [
@@ -52,7 +71,15 @@ export class MapComponent {
             name: 'Krasnyy Oslik',
             lat: 49,
             lng:36,
-            comments:['Hello','Hello!!'],
+            comments:[{
+                img:'http://localhost:3000/',
+                userName:'Nikita',
+                text:'asdadasdasdasd'
+            },{
+                img:'http://localhost:3000/',
+                userName:'Stas',
+                text:'Lalalala'
+            }],
             status:true,
             userName:'Nikita',
             img:'http://localhost:3000/'
@@ -61,7 +88,15 @@ export class MapComponent {
             name: 'Krasnyy Oslik2',
             lat: 50,
             lng:36,
-            comments:['Hihihi','Trololo'],
+            comments:[{
+                img:'http://localhost:3000/',
+                userName:'Tatas',
+                text:'asdadasdasdasd'
+            },{
+                img:'http://localhost:3000/',
+                userName:'Stas',
+                text:'Lalalala'
+            }],
             status:true,
             userName:'Oleg',
             img:'http://localhost:3000/'
@@ -70,13 +105,19 @@ export class MapComponent {
             name: 'Krasnyy Oslik3',
             lat: 49.96,
             lng:36,
-            comments:['lslsls','ssss'],
+            comments:[{
+                img:'http://localhost:3000/',
+                userName:'Nikita',
+                text:'123123123'
+            }],
             status:true,
             userName:'Stas',
             img:'http://localhost:3000/'
         },
     ];
-
+    constructor(private userService: UserService){
+        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
     ngOnInit() {
         if (navigator.geolocation)
         {
@@ -87,11 +128,19 @@ export class MapComponent {
         , null);
         }
     }
-    clickedMarker(place){
-        console.log(place);
+    clickedMarker(place:any){
         this.styleInfo = 'block';
         this.placeName = place.name;
         this.commentsCollection=place.comments;
+    }
+    clicked() {
+        let newComment={
+            img:'http://localhost:3000/',
+            userName:this.currentUser.firstName,
+            text:this.comnt
+        }
+        this.commentsCollection.push(newComment)
+        this.comnt=''
     }
 
 }
