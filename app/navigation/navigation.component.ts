@@ -1,9 +1,7 @@
 /**
  * Created by nikita on 16.12.16.
  */
-import { Component, OnInit } from '@angular/core';
-import { User } from '../_models/index';
-import { UserService } from '../_services/index';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     moduleId: module.id,
@@ -11,10 +9,7 @@ import { UserService } from '../_services/index';
     templateUrl: 'navigation.component.html'
 })
 export class NavComponent  {
-    currentUser: User;
-    users: User[] = [];
+    @Input() userName: any
+    
 
-    constructor(private userService: UserService) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    }
 }

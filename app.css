@@ -106,6 +106,7 @@ a {
 }
 .comment-author{
     float: left;
+    width: 100%;
 }
 .user-avatar{
     max-width: 100px;

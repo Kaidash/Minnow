@@ -1,0 +1,21 @@
+<sebm-google-map [latitude]="lat" [styles]="stylesMap" [longitude]="lng">
+    <sebm-google-map-marker *ngFor="let place of places" (markerClick)="clickedMarker(place)" [latitude]="place.lat" [longitude]="place.lng">
+        <!--<sebm-google-map-info-window>-->
+        <!--<p><b>Название</b> : {{place.name}}</p>-->
+        <!--</sebm-google-map-info-window>-->
+    </sebm-google-map-marker>
+</sebm-google-map>
+<div class="comment-wrapper" [style.display]="styleInfo">
+    <h1 ><b>Название водоема :</b> {{placeName}}</h1>
+    <div class="comment-box" *ngFor="let comment of commentsCollection">
+        <span class="comment-author">{{comment.userName}}</span>
+        <img class="user-avatar" src="/src/img/user1.png" alt="user">
+        <p>{{comment.text}}</p>
+    </div>
+    <div class="styled-input wide">
+        <textarea id="comnt" [(ngModel)]="comnt" required></textarea>
+        <label>Message</label>
+        <span></span>
+    </div>
+    <button type="submit" md-raised-button (click)="clicked()">Отпарвить</button>
+</div>

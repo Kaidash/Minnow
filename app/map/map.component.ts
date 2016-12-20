@@ -1,41 +1,16 @@
 /**
  * Created by nikita on 15.12.16.
  */
-import { Component, OnInit } from '@angular/core';
-import { User } from '../_models/index';
-import { UserService } from '../_services/index';
-
+import { Component, OnInit,Input } from '@angular/core';
 
 @Component({
-    selector: 'map-component',
-    template: `  
-        <sebm-google-map [latitude]="lat" [styles]="stylesMap" [longitude]="lng">
-            <sebm-google-map-marker *ngFor="let place of places" (markerClick)="clickedMarker(place)" [latitude]="place.lat" [longitude]="place.lng">
-                <!--<sebm-google-map-info-window>-->
-                    <!--<p><b>Название</b> : {{place.name}}</p>-->
-                <!--</sebm-google-map-info-window>-->
-            </sebm-google-map-marker>
-        </sebm-google-map>
-        <div class="comment-wrapper" [style.display]="styleInfo">
-            <h1 ><b>Название водоема :</b> {{placeName}}</h1>
-            <div class="comment-box" *ngFor="let comment of commentsCollection">
-                <span class="comment-author">{{comment.userName}}</span>
-                <img class="user-avatar" src="/src/img/user1.png" alt="user">
-                <p>{{comment.text}}</p>
-            </div>
-            <div class="styled-input wide">
-              <textarea id="comnt" [(ngModel)]="comnt" required></textarea>
-              <label>Message</label>
-              <span></span>
-            </div>   
-            <button type="submit" md-raised-button (click)="clicked()">Отпарвить</button>
-        </div>
-`
+    moduleId: module.id,
+    templateUrl: 'map.component.html',
+    selector: 'map-component'
 })
 
 export class MapComponent {
-    currentUser: User;
-    users: User[] = [];
+    @Input() userName: any
 
     lat: number = 51.678418;
     lng: number = 7.809007;
@@ -82,7 +57,8 @@ export class MapComponent {
             }],
             status:true,
             userName:'Nikita',
-            img:'http://localhost:3000/'
+            img:'http://localhost:3000/',
+            id:'1'
         },
         {
             name: 'Krasnyy Oslik2',
@@ -99,7 +75,8 @@ export class MapComponent {
             }],
             status:true,
             userName:'Oleg',
-            img:'http://localhost:3000/'
+            img:'http://localhost:3000/',
+            id:'2'
         },
         {
             name: 'Krasnyy Oslik3',
@@ -112,12 +89,10 @@ export class MapComponent {
             }],
             status:true,
             userName:'Stas',
-            img:'http://localhost:3000/'
+            img:'http://localhost:3000/',
+            id:'3'
         },
     ];
-    constructor(private userService: UserService){
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    }
     ngOnInit() {
         if (navigator.geolocation)
         {
@@ -134,13 +109,17 @@ export class MapComponent {
         this.commentsCollection=place.comments;
     }
     clicked() {
-        let newComment={
-            img:'http://localhost:3000/',
-            userName:this.currentUser.firstName,
-            text:this.comnt
+        if(this.comnt !== ''){
+            let newComment={
+                img:'http://localhost:3000/',
+                userName:this.userName.username,
+                text:this.comnt
+            }
+            console.log(newComment);
+            this.commentsCollection.push(newComment)
+            this.comnt=''
         }
-        this.commentsCollection.push(newComment)
-        this.comnt=''
+
     }
 
 }
