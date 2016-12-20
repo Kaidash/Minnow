@@ -1,16 +1,15 @@
 ﻿import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/index';
-import { ItemComponent } from './item/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { AuthGuard } from './_guards/index';
 
 const appRoutes: Routes = [
-    { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+    { path: '', redirectTo: 'map',pathMatch: 'full'  },
+    { path: 'map', component: HomeComponent,canActivate: [AuthGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'item/:id', component: ItemComponent },
 
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
