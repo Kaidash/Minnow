@@ -6,6 +6,6 @@
     <a md-menu-item><b>{{userName.firstName}}!</b></a>
     <a  [routerLink]="['']" md-menu-item> Карта </a>
     <a md-menu-item> Settings </a>
-    <a md-menu-item> Help </a>
+    <a [routerLink]="['/item/1']" md-menu-item> Help </a>
     <a [routerLink]="['/login']" md-menu-item disabled > Sign Out </a>
 </md-menu>
