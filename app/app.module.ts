@@ -20,6 +20,8 @@ import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { MapComponent } from './map/index';
+import { TestComponent } from './test/test.component';
+import { CommentsComponent } from './comments/comments.component';
 import { NavComponent } from './navigation/index';
 import { PlaceService } from './_services/place.service';
 import { AgmCoreModule } from 'angular2-google-maps/core';
@@ -42,7 +44,9 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
         LoginComponent,
         RegisterComponent,
         MapComponent,
-        NavComponent
+        NavComponent,
+        TestComponent,
+        CommentsComponent
     ],
     providers: [
         AuthGuard,

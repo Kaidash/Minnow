@@ -21,7 +21,7 @@ const placesPromise: Promise<Place[]> = Promise.resolve([
         status:true,
         userName:'Nikita',
         img:'http://localhost:3000/',
-        id:1
+        id:"1"
     },
     {
         name: 'Krasnyy Oslik2',
@@ -39,7 +39,7 @@ const placesPromise: Promise<Place[]> = Promise.resolve([
         status:true,
         userName:'Oleg',
         img:'http://localhost:3000/',
-        id:2
+        id:"2"
     },
     {
         name: 'Krasnyy Oslik3',
@@ -53,7 +53,7 @@ const placesPromise: Promise<Place[]> = Promise.resolve([
         status:true,
         userName:'Stas',
         img:'http://localhost:3000/',
-        id:3
+        id:"3"
     },
 ]);
 
@@ -66,16 +66,16 @@ export class PlaceService {
     }
 
     // find a specific user
-    getPlace(name:string) {
-        return placesPromise.then(places => places.find(place => place.name === name));
+    getPlace(id:string) {
+        // return placesPromise.then(places => places.find(place => place.id === id));
 
-        // let user = usersPromise.then(users => {
-        //   return users.find(user => {
-        //     return user.username === username;
-        //   });
-        // });
-
-        // return user;
+        let place = placesPromise.then(places => {
+          return places.find(place => {
+            return place.id === id;
+          });
+        });
+        console.log(place);
+        return place;
     }
 
 }

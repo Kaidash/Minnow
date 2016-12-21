@@ -18,7 +18,7 @@ export class MapComponent implements OnInit {
     lng: number = 7.809007;
 
     placeName: string = '';
-    styleInfo:string = 'none';  
+    styleInfo:string = 'none';
     commentsCollection:any[]=[];
     comnt:string;
     stylesMap: any[] =[
@@ -47,7 +47,7 @@ export class MapComponent implements OnInit {
     constructor(private service: PlaceService) {}
     ngOnInit() {
         this.service.getPlaces().then(places => this.places = places);
-        console.log(this.places);
+        
         if (navigator.geolocation)
         {
             navigator.geolocation.getCurrentPosition((position:any)=>{

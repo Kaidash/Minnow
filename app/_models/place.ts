@@ -9,5 +9,5 @@ export class Place {
     status: boolean;
     userName:string;
     img:string;
-    id:number
+    id:string
 }
