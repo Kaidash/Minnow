@@ -21,6 +21,7 @@ import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { MapComponent } from './map/index';
 import { NavComponent } from './navigation/index';
+import { PlaceService } from './_services/place.service';
 import { AgmCoreModule } from 'angular2-google-maps/core';
 
 @NgModule({
@@ -46,6 +47,7 @@ import { AgmCoreModule } from 'angular2-google-maps/core';
     providers: [
         AuthGuard,
         AlertService,
+        PlaceService,
         AuthenticationService,
         UserService,
 

@@ -1,7 +1,10 @@
 /**
- * Created by nikita on 20.12.16.
+ * Created by nikita on 21.12.16.
  */
-export let places:any[]=[
+import { Injectable } from '@angular/core';
+import { Place } from '../_models/place';
+
+const placesPromise: Promise<Place[]> = Promise.resolve([
     {
         name: 'Krasnyy Oslik',
         lat: 49,
@@ -52,4 +55,27 @@ export let places:any[]=[
         img:'http://localhost:3000/',
         id:3
     },
-];
+]);
+
+@Injectable()
+export class PlaceService {
+
+    // get all users
+    getPlaces() {
+        return placesPromise;
+    }
+
+    // find a specific user
+    getPlace(name:string) {
+        return placesPromise.then(places => places.find(place => place.name === name));
+
+        // let user = usersPromise.then(users => {
+        //   return users.find(user => {
+        //     return user.username === username;
+        //   });
+        // });
+
+        // return user;
+    }
+
+}

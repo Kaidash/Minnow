@@ -2,7 +2,8 @@
  * Created by nikita on 15.12.16.
  */
 import { Component, OnInit,Input } from '@angular/core';
-import {places} from '../places/places'
+import { Place } from '../_models/place';
+import { PlaceService } from '../_services/place.service';
 
 @Component({
     moduleId: module.id,
@@ -10,14 +11,14 @@ import {places} from '../places/places'
     selector: 'map-component'
 })
 
-export class MapComponent {
-    @Input() userName: any
-    z:any=places;
+export class MapComponent implements OnInit {
+    @Input() userName: any;
+    // z:any=places;
     lat: number = 51.678418;
     lng: number = 7.809007;
 
     placeName: string = '';
-    styleInfo:string = 'none';
+    styleInfo:string = 'none';  
     commentsCollection:any[]=[];
     comnt:string;
     stylesMap: any[] =[
@@ -42,9 +43,11 @@ export class MapComponent {
         }
     ];
 
-    places:any[]=places;
-    
+    places:Place[];
+    constructor(private service: PlaceService) {}
     ngOnInit() {
+        this.service.getPlaces().then(places => this.places = places);
+        console.log(this.places);
         if (navigator.geolocation)
         {
             navigator.geolocation.getCurrentPosition((position:any)=>{
@@ -65,8 +68,8 @@ export class MapComponent {
                 img:'http://localhost:3000/',
                 userName:this.userName.username,
                 text:this.comnt
-            }
-            this.commentsCollection.push(newComment)
+            };
+            this.commentsCollection.push(newComment);
             this.comnt=''
         }
 
